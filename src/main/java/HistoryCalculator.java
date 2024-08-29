@@ -1,5 +1,3 @@
-import by.tms.lesson26.onl30.other.Historian;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +8,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-
 
 import static by.tms.lesson26.onl30.other.Historian.readHistoryCalculation;
 import static by.tms.lesson26.onl30.other.KeeperConstants.*;
@@ -25,31 +22,42 @@ public class HistoryCalculator extends HttpServlet {
         if (IS_PERFORM_LOGGING) logIn(MESSAGE_ENDING_WORK_TEMPLATE.formatted("HistoryCalculator"));
     }
 
-   private String prepareResponseHistory(String[] historyArray) {
-        StringBuilder resultString =  new StringBuilder();
+    private String prepareResponseHistory(String[] historyArray) {
+        StringBuilder resultString = new StringBuilder();
         for (String line : historyArray) {
             String[] lineArray = line.split(";");
             resultString.append(convertSecondsToStringDateTime(Long.valueOf(lineArray[0]))).append("\t---\t");
             double firstOperand = Double.valueOf(lineArray[1]);
             double secondOperand = Double.valueOf(lineArray[2]);
             switch (lineArray[3]) {
-                case "sum" -> resultString.append(myDoubleString(firstOperand)).append("+").append(myDoubleString(secondOperand)).append("=")
-                        .append(myDoubleString(firstOperand + secondOperand)).append("\n");
-                case "diff" -> resultString.append(myDoubleString(firstOperand)).append("-").append(myDoubleString(secondOperand)).append("=")
-                        .append(myDoubleString(firstOperand - secondOperand)).append("\n");
-                case "mul" -> resultString.append(myDoubleString(firstOperand)).append("*").append(myDoubleString(secondOperand)).append("=")
-                        .append(myDoubleString(firstOperand * secondOperand)).append("\n");
-                case "div" -> resultString.append(myDoubleString(firstOperand)).append("/").append(myDoubleString(secondOperand)).append("=")
-                        .append(myDoubleString(firstOperand / secondOperand)).append("\n");
-                case "prc" -> resultString.append(myDoubleString(firstOperand)).append("%").append(myDoubleString(secondOperand)).append("=")
-                        .append(myDoubleString(firstOperand * secondOperand / 100)).append("\n");
+                case "sum" ->
+                        resultString.append(myDoubleString(firstOperand)).append(" + ")
+                                .append(myDoubleString(secondOperand)).append(" = ")
+                                .append(myDoubleString(firstOperand + secondOperand)).append("\n");
+                case "diff" ->
+                        resultString.append(myDoubleString(firstOperand)).append(" - ")
+                                .append(myDoubleString(secondOperand)).append(" = ")
+                                .append(myDoubleString(firstOperand - secondOperand)).append("\n");
+                case "mul" ->
+                        resultString.append(myDoubleString(firstOperand)).append(" * ")
+                                .append(myDoubleString(secondOperand)).append(" = ")
+                                .append(myDoubleString(firstOperand * secondOperand)).append("\n");
+                case "div" ->
+                        resultString.append(myDoubleString(firstOperand)).append(" / ")
+                                .append(myDoubleString(secondOperand)).append(" = ")
+                                .append(myDoubleString(firstOperand / secondOperand)).append("\n");
+                case "prc" ->
+                        resultString.append(myDoubleString(firstOperand)).append(" % ")
+                                .append(myDoubleString(secondOperand)).append(" = ")
+                                .append(myDoubleString(firstOperand * secondOperand / 100)).append("\n");
                 default -> resultString.append(""); // незнакомая операция пропускается в выдаче
-            };
+            }
+            ;
         }
         return resultString.toString();
     }
 
-    String convertSecondsToStringDateTime(long quantitySeconds){
+    private String convertSecondsToStringDateTime(long quantitySeconds) {
         Date dateLong = new Date(quantitySeconds);
         Instant instant = dateLong.toInstant();
         ZoneId defaultZoneId = ZoneId.systemDefault();
@@ -58,7 +66,7 @@ public class HistoryCalculator extends HttpServlet {
         return localDateTime.format(dateTimeFormatter);
     }
 
-    String myDoubleString(double d){
-        return String.format(DOUBLE_2_STRING,d);
+    private String myDoubleString(double d) {
+        return String.format(DOUBLE_2_STRING, d);
     }
 }

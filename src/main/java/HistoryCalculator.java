@@ -15,11 +15,13 @@ import static by.tms.lesson26.onl30.other.MyLogger.logIn;
 
 @WebServlet("/history_calculator")
 public class HistoryCalculator extends HttpServlet {
+    private static final String SERVLET_NAME = "HistoryCalculator";
+
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         if (IS_PERFORM_LOGGING) logIn(MESSAGE_BEGINNING_WORK_TEMPLATE.formatted("HistoryCalculator"));
         String[] historyArray = readHistoryCalculation().split("\n");
         resp.getWriter().write(prepareResponseHistory(historyArray));
-        if (IS_PERFORM_LOGGING) logIn(MESSAGE_ENDING_WORK_TEMPLATE.formatted("HistoryCalculator"));
+        if (IS_PERFORM_LOGGING) logIn(MESSAGE_ENDING_WORK_TEMPLATE.formatted(SERVLET_NAME));
     }
 
     private String prepareResponseHistory(String[] historyArray) {

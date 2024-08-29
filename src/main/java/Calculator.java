@@ -4,14 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
+import static by.tms.lesson26.onl30.other.Historian.writeHistoryCalculation;
 import static by.tms.lesson26.onl30.other.KeeperConstants.*;
 import static by.tms.lesson26.onl30.other.MyLogger.logIn;
 
@@ -33,7 +27,7 @@ public class Calculator extends HttpServlet {
     }
 
     private String calculate(double num1, double num2, String typeOperation) {
-        return  switch (typeOperation) {
+        return switch (typeOperation) {
             case "sum" -> String.valueOf(num1 + num2);
             case "diff" -> String.valueOf(num1 - num2);
             case "mul" -> String.valueOf(num1 * num2);
@@ -41,19 +35,5 @@ public class Calculator extends HttpServlet {
             case "prc" -> String.valueOf(num1 * num2 / 100);
             default -> INVALID_OPERATION;
         };
-    }
-
-    private void writeHistoryCalculation(String firstOperand, String secondOperand, String typeOperation) {
-        ZonedDateTime dateTime = ZonedDateTime.now(ZoneOffset.UTC);
-        String lineFileCsv = String.format(CSV_FORMAT_TEMPLATE, dateTime.toInstant().toEpochMilli(),
-                firstOperand, secondOperand, typeOperation);
-        try {
-// todo сделать поток
-
-                Files.write(Paths.get(CSV_NAME_FILE), lineFileCsv.getBytes(), StandardOpenOption.APPEND);
-
-        } catch (IOException ex) {
-            logIn(ERROR_TEMPLATE.formatted(ERROR_WRITE_FILE_TEMPLATE.formatted(CSV_NAME_FILE)));
-        }
     }
 }

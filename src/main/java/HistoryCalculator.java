@@ -18,7 +18,6 @@ public class HistoryCalculator extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         if (IS_PERFORM_LOGGING) logIn(MESSAGE_BEGINNING_WORK_TEMPLATE.formatted("HistoryCalculator"));
         String[] historyArray = readHistoryCalculation().split("\n");
-        int i = 0;
         resp.getWriter().write(prepareResponseHistory(historyArray));
         if (IS_PERFORM_LOGGING) logIn(MESSAGE_ENDING_WORK_TEMPLATE.formatted("HistoryCalculator"));
     }
@@ -41,6 +40,7 @@ public class HistoryCalculator extends HttpServlet {
                         .append(myDoubleString(firstOperand / secondOperand)).append("\n");
                 case "prc" -> resultString.append(myDoubleString(firstOperand)).append("%").append(myDoubleString(secondOperand)).append("=")
                         .append(myDoubleString(firstOperand * secondOperand / 100)).append("\n");
+                default -> resultString.append(""); // незнакомая операция пропускается в выдаче
             };
         }
         return resultString.toString();

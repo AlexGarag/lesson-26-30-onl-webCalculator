@@ -4,7 +4,7 @@ public class KeeperConstants {
     public static final String MESSAGE_BEGINNING_WORK_TEMPLATE = "'%s' has started working";
     public static final String MESSAGE_ENDING_WORK_TEMPLATE = "'%s' completed the operation";
     public static final String ERROR_TEMPLATE = "ERROR: %s";
-    public static final String ERROR_WRITE_FILE_TEMPLATE = "invalid path to %s";
+    public static final String ERROR_IO_FILE_TEMPLATE = "invalid path to %s";
     public static final String INVALID_OPERATION = "invalid operation";
     public static final String RESPONSE_TEMPLATE = "result operation: %s";
     public static final String CSV_NAME_FILE = "C:\\Users\\123\\IdeaProjects\\lesson-26-30-onl-webCalculator\\src\\main\\java\\history_calculations.csv";

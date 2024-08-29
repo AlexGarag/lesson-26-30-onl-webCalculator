@@ -6,8 +6,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import static by.tms.lesson26.onl30.other.KeeperConstants.*;
 import static by.tms.lesson26.onl30.other.MyLogger.logIn;
@@ -38,29 +36,4 @@ public class Historian {
         }
         return historyString;
     }
-
-//    public static String readHistoryCalculation(String[] historyArray) {
-//        Response response = new Response();
-//        StringBuilder resultString =  new StringBuilder();
-//        for (String line : historyArray) {
-//            String[] lineArray = line.split(";");
-//            resultString.append(convertSecondsDateTimeString(Long.valueOf(lineArray[0]))).append("\t---\t");
-//            double firstOperand = Double.valueOf(lineArray[1]);
-//            double secondOperand = Double.valueOf(lineArray[2]);
-//            switch (lineArray[3]) {
-//                case "sum" -> resultString.append(myDoubleString(firstOperand)).append("+").append(myDoubleString(secondOperand)).append("=")
-//                        .append(myDoubleString(firstOperand + secondOperand)).append("\n");
-//                case "diff" -> resultString.append(myDoubleString(firstOperand)).append("-").append(myDoubleString(secondOperand)).append("=")
-//                        .append(myDoubleString(firstOperand - secondOperand)).append("\n");
-//                case "mul" -> resultString.append(myDoubleString(firstOperand)).append("*").append(myDoubleString(secondOperand)).append("=")
-//                        .append(myDoubleString(firstOperand * secondOperand)).append("\n");
-//                case "div" -> resultString.append(myDoubleString(firstOperand)).append("/").append(myDoubleString(secondOperand)).append("=")
-//                        .append(myDoubleString(firstOperand / secondOperand)).append("\n");
-//                case "prc" -> resultString.append(myDoubleString(firstOperand)).append("%").append(myDoubleString(secondOperand)).append("=")
-//                        .append(myDoubleString(firstOperand * secondOperand / 100)).append("\n");
-//            };
-//        }
-//        response.setBodyResponse(resultString.toString());
-//        return ""; //response;
-//    }
 }

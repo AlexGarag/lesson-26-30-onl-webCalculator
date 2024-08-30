@@ -35,13 +35,13 @@ public class Calculator extends HttpServlet {
         if (IS_PERFORM_LOGGING) logIn(MESSAGE_ENDING_WORK_TEMPLATE.formatted(SERVLET_NAME));
     }
 
-    private String calculate(double num1, double num2, String typeOperation) {
+    private String calculate(double firstOperand, double secondOperand, String typeOperation) {
         return switch (typeOperation) {
-            case "sum" -> String.valueOf(num1 + num2);
-            case "diff" -> String.valueOf(num1 - num2);
-            case "mul" -> String.valueOf(num1 * num2);
-            case "div" -> String.valueOf(num1 / num2);
-            case "prc" -> String.valueOf(num1 * num2 / 100);
+            case "sum" -> String.valueOf(firstOperand + secondOperand);
+            case "diff" -> String.valueOf(firstOperand - secondOperand);
+            case "mul" -> String.valueOf(firstOperand * secondOperand);
+            case "div" -> String.valueOf(firstOperand / secondOperand);
+            case "prc" -> String.valueOf(firstOperand * secondOperand / 100);
             default -> INVALID_OPERATION;
         };
     }

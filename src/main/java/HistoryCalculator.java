@@ -32,24 +32,19 @@ public class HistoryCalculator extends HttpServlet {
             double firstOperand = Double.valueOf(lineArray[1]);
             double secondOperand = Double.valueOf(lineArray[2]);
             switch (lineArray[3]) {
-                case "sum" ->
-                        resultString.append(myDoubleString(firstOperand)).append(" + ")
+                case "sum" -> resultString.append(myDoubleString(firstOperand)).append(" + ")
                                 .append(myDoubleString(secondOperand)).append(" = ")
                                 .append(myDoubleString(firstOperand + secondOperand)).append("\n");
-                case "diff" ->
-                        resultString.append(myDoubleString(firstOperand)).append(" - ")
+                case "diff" -> resultString.append(myDoubleString(firstOperand)).append(" - ")
                                 .append(myDoubleString(secondOperand)).append(" = ")
                                 .append(myDoubleString(firstOperand - secondOperand)).append("\n");
-                case "mul" ->
-                        resultString.append(myDoubleString(firstOperand)).append(" * ")
+                case "mul" -> resultString.append(myDoubleString(firstOperand)).append(" * ")
                                 .append(myDoubleString(secondOperand)).append(" = ")
                                 .append(myDoubleString(firstOperand * secondOperand)).append("\n");
-                case "div" ->
-                        resultString.append(myDoubleString(firstOperand)).append(" / ")
+                case "div" -> resultString.append(myDoubleString(firstOperand)).append(" / ")
                                 .append(myDoubleString(secondOperand)).append(" = ")
                                 .append(myDoubleString(firstOperand / secondOperand)).append("\n");
-                case "prc" ->
-                        resultString.append(myDoubleString(firstOperand)).append(" % ")
+                case "prc" -> resultString.append(myDoubleString(firstOperand)).append(" % ")
                                 .append(myDoubleString(secondOperand)).append(" = ")
                                 .append(myDoubleString(firstOperand * secondOperand / 100)).append("\n");
                 default -> resultString.append(""); // незнакомая операция пропускается в выдаче

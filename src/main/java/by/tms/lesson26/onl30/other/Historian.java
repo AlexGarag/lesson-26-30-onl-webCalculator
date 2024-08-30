@@ -19,7 +19,6 @@ public class Historian {
         Thread writeFile = new Thread(() -> {
             try {
                 Files.write(Paths.get(CSV_NAME_FILE), lineFileCsv.getBytes(), StandardOpenOption.APPEND);
-
             } catch (IOException ex) {
                 logIn(ERROR_TEMPLATE.formatted(ERROR_IO_FILE_TEMPLATE.formatted(CSV_NAME_FILE)));
             }

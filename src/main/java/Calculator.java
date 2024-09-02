@@ -12,13 +12,16 @@ import static by.tms.lesson26.onl30.other.MyLogger.logIn;
 @WebServlet("/calculator")      //http://localhost:8080/calculator?num1=7&num2=5&type=sum
 public class Calculator extends HttpServlet {
     private static final String SERVLET_NAME = "Calculator";
+    private static final String FIRST_PARAMETER = "num1";
+    private static final String SECOND_PARAMETER = "num2";
+    private static final String TYPE_OPERATION_PARAMETER = "type";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        if (IS_PERFORM_LOGGING) logIn(MESSAGE_BEGINNING_WORK_TEMPLATE.formatted("Calculator"));
-        String firstOperand = req.getParameter("num1");
-        String secondOperand = req.getParameter("num2");
-        String typeOperation = req.getParameter("type");
+        if (IS_PERFORM_LOGGING) logIn(MESSAGE_BEGINNING_WORK_TEMPLATE.formatted(SERVLET_NAME));
+        String firstOperand = req.getParameter(FIRST_PARAMETER);
+        String secondOperand = req.getParameter(SECOND_PARAMETER);
+        String typeOperation = req.getParameter(TYPE_OPERATION_PARAMETER);
         if (isNotNumber(firstOperand) || isNotNumber(secondOperand)) {
             resp.getWriter().write((ERROR_TEMPLATE.formatted(ERROR_ON_OPERAND_TEMPLATE)));
             return;

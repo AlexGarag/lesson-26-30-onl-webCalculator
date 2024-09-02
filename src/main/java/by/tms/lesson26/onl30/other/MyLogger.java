@@ -8,7 +8,7 @@ import static by.tms.lesson26.onl30.other.KeeperConstants.*;
 
 public class MyLogger {
     public static void logIn(String messageCustomer) {
-        System.out.printf(LOGGER_TEMPLATE.formatted(getStringDateTime(), messageCustomer));
+        System.out.printf(LOGGER_MESSAGE_TEMPLATE.formatted(getStringDateTime(), messageCustomer));
     }
 
     public static String getStringDateTime() {

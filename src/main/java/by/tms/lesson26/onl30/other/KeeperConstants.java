@@ -13,7 +13,7 @@ public class KeeperConstants {
     public static final String SEPARATOR = ";";
     public static final String LF = "\n";
     public static final String CSV_FORMAT_TEMPLATE = "%s" + SEPARATOR + "%s" + SEPARATOR + "%s" + SEPARATOR + "%s\n";
-    public static final String LOGGER_TEMPLATE = "%s, %s\n";
+    public static final String LOGGER_MESSAGE_TEMPLATE = "%s, %s\n";
     public static final String DATE_TIME_LOGGER_TEMPLATE = "dd/MM/yyyy HH:mm:ss";
     public static final String DOUBLE_2_STRING = "%.2f";
     public static final boolean IS_PERFORM_LOGGING = true;

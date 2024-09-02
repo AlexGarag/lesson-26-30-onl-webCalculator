@@ -28,10 +28,11 @@ public class HistoryCalculator extends HttpServlet {
         StringBuilder resultString = new StringBuilder();
         for (String line : historyArray) {
             String[] lineArray = line.split(SEPARATOR);
-            resultString.append(convertSecondsToStringDateTime(Long.valueOf(lineArray[0]))).append("\t---\t");
-            String typeOperation = lineArray[3];
+            String dateTimeString = convertSecondsToStringDateTime(Long.valueOf(lineArray[0]));
+            resultString.append(dateTimeString).append("\t---\t");
             double firstOperand = Double.valueOf(lineArray[1]);
             double secondOperand = Double.valueOf(lineArray[2]);
+            String typeOperation = lineArray[3];
             resultString.append(restoreCalculation(firstOperand, secondOperand, typeOperation));
         }
         return resultString.toString();

@@ -29,28 +29,35 @@ public class HistoryCalculator extends HttpServlet {
         for (String line : historyArray) {
             String[] lineArray = line.split(SEPARATOR);
             resultString.append(convertSecondsToStringDateTime(Long.valueOf(lineArray[0]))).append("\t---\t");
+            String typeOperation = lineArray[3];
             double firstOperand = Double.valueOf(lineArray[1]);
             double secondOperand = Double.valueOf(lineArray[2]);
-            switch (lineArray[3]) {
-                case "sum" -> resultString.append(myDoubleString(firstOperand)).append(" + ")
-                                .append(myDoubleString(secondOperand)).append(" = ")
-                                .append(myDoubleString(firstOperand + secondOperand)).append(LF);
-                case "diff" -> resultString.append(myDoubleString(firstOperand)).append(" - ")
-                                .append(myDoubleString(secondOperand)).append(" = ")
-                                .append(myDoubleString(firstOperand - secondOperand)).append(LF);
-                case "mul" -> resultString.append(myDoubleString(firstOperand)).append(" * ")
-                                .append(myDoubleString(secondOperand)).append(" = ")
-                                .append(myDoubleString(firstOperand * secondOperand)).append(LF);
-                case "div" -> resultString.append(myDoubleString(firstOperand)).append(" / ")
-                                .append(myDoubleString(secondOperand)).append(" = ")
-                                .append(myDoubleString(firstOperand / secondOperand)).append(LF);
-                case "prc" -> resultString.append(myDoubleString(firstOperand)).append(" % ")
-                                .append(myDoubleString(secondOperand)).append(" = ")
-                                .append(myDoubleString(firstOperand * secondOperand / 100)).append(LF);
-                default -> resultString.append(""); // незнакомая операция пропускается в выдаче
-            };
+            resultString.append(restoreCalculation(firstOperand, secondOperand, typeOperation));
         }
         return resultString.toString();
+    }
+
+    private StringBuilder restoreCalculation(double firstOperand, double secondOperand, String typeOperation) {
+        StringBuilder resultString = new StringBuilder();
+        switch (typeOperation) {
+            case "sum" -> resultString.append(myDoubleString(firstOperand)).append(" + ")
+                    .append(myDoubleString(secondOperand)).append(" = ")
+                    .append(myDoubleString(firstOperand + secondOperand)).append(LF);
+            case "diff" -> resultString.append(myDoubleString(firstOperand)).append(" - ")
+                    .append(myDoubleString(secondOperand)).append(" = ")
+                    .append(myDoubleString(firstOperand - secondOperand)).append(LF);
+            case "mul" -> resultString.append(myDoubleString(firstOperand)).append(" * ")
+                    .append(myDoubleString(secondOperand)).append(" = ")
+                    .append(myDoubleString(firstOperand * secondOperand)).append(LF);
+            case "div" -> resultString.append(myDoubleString(firstOperand)).append(" / ")
+                    .append(myDoubleString(secondOperand)).append(" = ")
+                    .append(myDoubleString(firstOperand / secondOperand)).append(LF);
+            case "prc" -> resultString.append(myDoubleString(firstOperand)).append(" % ")
+                    .append(myDoubleString(secondOperand)).append(" = ")
+                    .append(myDoubleString(firstOperand * secondOperand / 100)).append(LF);
+            default -> resultString.append(""); // незнакомая операция пропускается в выдаче
+        };
+        return resultString;
     }
 
     private String convertSecondsToStringDateTime(long quantitySeconds) {

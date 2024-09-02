@@ -24,7 +24,7 @@ public class HistoryCalculator extends HttpServlet {
         if (IS_PERFORM_LOGGING) logIn(MESSAGE_ENDING_WORK_TEMPLATE.formatted(SERVLET_NAME));
     }
 
-    private String prepareResponseHistory(String[] historyArray) {
+    private static String prepareResponseHistory(String[] historyArray) {
         StringBuilder resultString = new StringBuilder();
         for (String line : historyArray) {
             String[] lineArray = line.split(SEPARATOR);
@@ -38,7 +38,7 @@ public class HistoryCalculator extends HttpServlet {
         return resultString.toString();
     }
 
-    private StringBuilder restoreCalculation(double firstOperand, double secondOperand, String typeOperation) {
+    private static StringBuilder restoreCalculation(double firstOperand, double secondOperand, String typeOperation) {
         StringBuilder resultString = new StringBuilder();
         switch (typeOperation) {
             case "sum" -> resultString.append(myDoubleString(firstOperand)).append(" + ")
@@ -61,7 +61,7 @@ public class HistoryCalculator extends HttpServlet {
         return resultString;
     }
 
-    private String convertSecondsToStringDateTime(long quantitySeconds) {
+    private static String convertSecondsToStringDateTime(long quantitySeconds) {
         Date dateLong = new Date(quantitySeconds);
         Instant instant = dateLong.toInstant();
         ZoneId defaultZoneId = ZoneId.systemDefault();
@@ -70,7 +70,7 @@ public class HistoryCalculator extends HttpServlet {
         return localDateTime.format(dateTimeFormatter);
     }
 
-    private String myDoubleString(double d) {
+    private static String myDoubleString(double d) {
         return String.format(DOUBLE_2_STRING, d);
     }
 }

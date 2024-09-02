@@ -38,7 +38,7 @@ public class Calculator extends HttpServlet {
         if (IS_PERFORM_LOGGING) logIn(MESSAGE_ENDING_WORK_TEMPLATE.formatted(SERVLET_NAME));
     }
 
-    private String calculate(double firstOperand, double secondOperand, String typeOperation) {
+    private static String calculate(double firstOperand, double secondOperand, String typeOperation) {
         return switch (typeOperation) {
             case "sum" -> String.valueOf(firstOperand + secondOperand);
             case "diff" -> String.valueOf(firstOperand - secondOperand);

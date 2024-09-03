@@ -9,7 +9,8 @@ public class KeeperConstants {
     public static final String ERROR_ON_TYPE_OPERATION_TEMPLATE = "the specified operation is not being processed";
     public static final String INVALID_OPERATION = "invalid operation";
     public static final String RESPONSE_TEMPLATE = "result operation: %s";
-    public static final String CSV_NAME_FILE = "C:\\Users\\123\\IdeaProjects\\lesson-26-30-onl-webCalculator\\src\\main\\java\\history_calculations.csv";
+    public static final String HISTORY_CALCULATIONS = "C:\\Users\\123\\IdeaProjects\\lesson-26-30-onl-webCalculator\\src\\main\\java\\history_calculations.csv";
+    public static final String LOGIN_PASSWORD_STORAGE = "C:\\Users\\123\\IdeaProjects\\lesson-26-30-onl-webCalculator\\src\\main\\java\\login_password.csv";
     public static final String SEPARATOR = ";";
     public static final String LF = "\n";
     public static final String CSV_FORMAT_TEMPLATE = "%s" + SEPARATOR + "%s" + SEPARATOR + "%s" + SEPARATOR + "%s\n";

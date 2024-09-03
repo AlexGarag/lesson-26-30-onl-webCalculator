@@ -9,7 +9,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-import static by.tms.lesson26.onl30.other.Historian.readHistoryCalculation;
+import static by.tms.lesson26.onl30.other.FileProcessor.readFile;
 import static by.tms.lesson26.onl30.other.KeeperConstants.*;
 import static by.tms.lesson26.onl30.other.MyLogger.logIn;
 
@@ -19,7 +19,7 @@ public class HistoryCalculator extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         if (IS_PERFORM_LOGGING) logIn(MESSAGE_BEGINNING_WORK_TEMPLATE.formatted("HistoryCalculator"));
-        String[] historyArray = readHistoryCalculation().split(LF);
+        String[] historyArray = readFile(HISTORY_CALCULATIONS).split(LF);
         resp.getWriter().write(prepareResponseHistory(historyArray));
         if (IS_PERFORM_LOGGING) logIn(MESSAGE_ENDING_WORK_TEMPLATE.formatted(SERVLET_NAME));
     }

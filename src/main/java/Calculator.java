@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import static by.tms.lesson26.onl30.other.Historian.writeHistoryCalculation;
+import static by.tms.lesson26.onl30.other.FileProcessor.writeHistoryCalculation;
 import static by.tms.lesson26.onl30.other.KeeperConstants.*;
 import static by.tms.lesson26.onl30.other.MyLogger.logIn;
 
